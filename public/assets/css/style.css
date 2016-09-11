@@ -1,5 +1,6 @@
 .jumbotron {
 	text-align: center;
+	/*color: #8C4B30 !important;*/
 }
 
 .form-control {
@@ -10,7 +11,25 @@ main {
 	padding-top:30px;	
 }
 
+body {
+	background-image: url('http://us.thebar.com/img/homepage/carousel/2015_september_updates/world-class-bg.jpg')
+}
+
+.btn-primary {
+	background: #F2C7B5 !important;
+	color: black !important;
+}
+
+.navbar-brand {
+	color: #8C4B30 !important;
+}
+
+.nav li a {
+	color: #8C4B30 !important;
+}
+
 header .navbar {
+	background-color: white;
 	border-radius:0;
 }
 

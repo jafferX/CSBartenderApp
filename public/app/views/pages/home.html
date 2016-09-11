@@ -1,6 +1,16 @@
+<style>
+	.btn {
+		margin-top: 50px;
+	}
+
+	.jumbotron h2 {
+		color: #8C4B30;
+	}
+
+</style>
 <div class="row col-md-6 col-md-offset-3">
 	<div class="jumbotron">
-		<h1>Welcome to our App</h1>
+		<h2>Welcome to <br> Bartender</h2>
 		<button ng-if="!main.loggedIn" class="btn btn-block btn-primary" ng-click="main.loginRedirect()">Login</button>
 		<button ng-if="main.loggedIn" class="btn btn-block btn-primary" ng-click="main.clickRedirect()">Go to App</button>
 	</div>

@@ -1,7 +1,19 @@
+<style>
+
+	.registerBtn h5 a {
+		color: #8C4B30;
+	}
+
+	.jumbotron h2 {
+		color: #8C4B30;
+	}
+
+
+</style>
 <div class="row col-md-6 col-md-offset-3">
 
 	<div class="jumbotron">
-		<h1>Login</h1>		
+		<h2>Login</h2>		
 
 		<form ng-submit="login.doLogin()">
 			
@@ -24,7 +36,7 @@
 				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
 			</button>
 
-			<div>
+			<div class="registerBtn">
 				<h5><a href="/register" >Register</a></h5>
 			</div>
 

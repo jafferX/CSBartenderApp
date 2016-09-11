@@ -13,7 +13,8 @@
 <div class="row col-md-6 col-md-offset-3">
 
 	<div class="jumbotron">
-		<h2>Login</h2>		
+		<h2>Login</h2>
+		<br>	
 
 		<form ng-submit="login.doLogin()">
 			
@@ -35,6 +36,8 @@
 				<span ng-if="!login.processing">Login</span>
 				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
 			</button>
+
+			<br>
 
 			<div class="registerBtn">
 				<h5><a href="/register" >Register</a></h5>

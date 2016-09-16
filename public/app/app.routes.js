@@ -22,6 +22,11 @@ angular.module('app.routes', ['ngRoute'])
 				controller  : 'appController',
 	    		controllerAs: 'app'
 			})
+			.when('/search', {
+				templateUrl: 'app/views/pages/search.html',
+				controller  : 'searchController',
+	    		controllerAs: 'search'
+			})
 			.when('/private', {
 				templateUrl: 'app/views/pages/private.html',
 			})

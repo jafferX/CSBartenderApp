@@ -1,6 +1,15 @@
+body {
+	font-family: "Lucida Console", Monaco, monospace !important;
+}
+
 .jumbotron {
 	text-align: center;
+	opacity: 0.9;
 	/*color: #8C4B30 !important;*/
+}
+
+.jumbotron h2 {
+	color: #8C4B30;
 }
 
 .form-control {

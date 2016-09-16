@@ -1,6 +1,7 @@
 // Import our requirements.
 var bodyParser = require('body-parser'); 
 var User = require('../models/user');
+var Ingredient = require('../models/ingredient')
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
 var secret = config.secret;
@@ -85,6 +86,80 @@ module.exports = function(app, express) {
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);
 	});
+
+
+	apiRouter.get('/ingredient/:ingName', function(req, res) {
+		ingredientName = req.params.ingName
+		Ingredient.find({name: new RegExp('^'+ingredientName, "i")}, function(err, ings) {
+			if(!err) {
+				if(ings.length != 0) {
+					res.json({
+						success: true,
+						ingredients: ings
+					});
+				} else {
+					res.json({
+						success: false,
+						message: 'Ingredient not found.'
+					})
+				}
+			} else {
+				res.status(403).send({
+					success: false,
+					message: 'Error finding ingredient.'
+				});
+			}
+		});
+
+	});
+
+	apiRouter.post('/addIngredient', function(req, res) {
+		if(req.body.ingredientName) {
+			var ing = new Ingredient();
+			ing.name = req.body.ingredientName;
+			ing.save(function(err) {
+				if (err) {
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'A ingredient with that username already exists. '});
+					else 
+						return res.json({ success: false, message: err});
+				} else {
+					return res.json({ success: true, message: 'Ingredient created!'});
+				}
+			});
+		} else {
+			res.status(403).send({
+				success: false,
+				message: 'Ingredient name not found.'
+			});
+		}
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	return apiRouter;
 };

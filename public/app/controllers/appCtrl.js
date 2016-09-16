@@ -18,7 +18,19 @@ angular.module('appCtrl', [])
 			'name': 'Cranberry Juice'
 		};
 
-
 		vm.drinks = [drink1, drink2, drink3];
+
+	})
+	.controller('searchController', function(App) {
+		var vm = this;
+
+		vm.searchIng = function() {
+			App.getIngredient(vm.searchString)
+				.then(function(data) {
+					if(data.data.ingredients) {
+						console.log(data.data.ingredients[0]);
+					}
+				});
+		}
 
 	});

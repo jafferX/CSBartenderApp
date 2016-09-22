@@ -19,7 +19,7 @@ function getRequest(href, done) {
 }
 //Given an ingredient get drinks with ingredient
 function getDrinksWith(ing_name, done) {
-	var href = "http://addb.absolutdrinks.com/drinks/with/" + ing_name + "?apiKey=" + config.api_key;
+	var href = "http://addb.absolutdrinks.com/drinks/with/" + ing_name + "/?apiKey=" + config.api_key;
 	getRequest(href, done);
 }
 

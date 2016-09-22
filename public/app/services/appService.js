@@ -11,7 +11,8 @@ angular.module('appService', [])
 			 var xhr = new XMLHttpRequest();
 			 xhr.open("GET", "http://addb.absolutdrinks.com/drinks/with/" + ing_name + "?apiKey=3333501cb1af4603beccb822dc764f03", false);
 			 xhr.send();
-			 var responseString.JSON.parse(xhr.responseText);
+			 var responseString = JSON.parse(xhr.responseText);
+			 console.log(responseString);
 		};
 
 		return appFactory;

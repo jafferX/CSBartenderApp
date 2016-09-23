@@ -30,7 +30,11 @@ angular.module('appCtrl', [])
 					if(data.data.ingredients) {
 						console.log(data.data.ingredients[0]);
 					}
+					
 				});
+				App.getByDrink(vm.searchString).then(function(data) {
+						console.log(data);
+					});
 		}
 
 	});

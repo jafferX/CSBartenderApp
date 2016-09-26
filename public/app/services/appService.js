@@ -6,7 +6,7 @@ angular.module('appService', [])
 		appFactory.getIngredient = function(name) {
 			return $http.get('/api/ingredient/' + name);
 		};
-		
+
 		appFactory.getDrinkBy = function(ing) {
 			return $http.get('/api/getDrinkByIngredient/' + ing);
 		};

@@ -6,6 +6,7 @@ var jwt = require('jsonwebtoken');
 var http = require('http');
 var config = require('../../config');
 var secret = config.secret;
+var apiKey = config.api-key;
 
 module.exports = function(app, express) {
 	var apiRouter = express.Router();
@@ -91,7 +92,7 @@ module.exports = function(app, express) {
 	apiRouter.get('/getDrinkByIngredient/:ingName', function(req, res) {
 		data = http.get({
 			host: 'addb.absolutdrinks.com',
-			path: '/drinks/with/' + req.params.ingName + '/?apiKey=3333501cb1af4603beccb822dc764f03'
+			path: '/drinks/with/' + req.params.ingName + '/?apiKey=' + apiKey
 		},function(resp) {
 			var body = '';
 			resp.on('data', function(d) {

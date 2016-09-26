@@ -3,10 +3,7 @@ var bodyParser = require('body-parser');
 var User = require('../models/user');
 var Ingredient = require('../models/ingredient')
 var jwt = require('jsonwebtoken');
-<<<<<<< c1fdaebf95df852c173f8b5071a44a0155498d13
-=======
 var http = require('http');
->>>>>>> Fixed CORS
 var config = require('../../config');
 var secret = config.secret;
 
@@ -91,8 +88,6 @@ module.exports = function(app, express) {
 		res.send(req.decoded);
 	});
 
-<<<<<<< c1fdaebf95df852c173f8b5071a44a0155498d13
-=======
 	apiRouter.get('/getDrinkByIngredient/:ingName', function(req, res) {
 		data = http.get({
 			host: 'addb.absolutdrinks.com',
@@ -111,7 +106,6 @@ module.exports = function(app, express) {
 			});
 		});
 	});
->>>>>>> Fixed CORS
 
 	apiRouter.get('/ingredient/:ingName', function(req, res) {
 		ingredientName = req.params.ingName
@@ -160,34 +154,5 @@ module.exports = function(app, express) {
 		}
 	});
 
-<<<<<<< c1fdaebf95df852c173f8b5071a44a0155498d13
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> Fixed CORS
 	return apiRouter;
 };

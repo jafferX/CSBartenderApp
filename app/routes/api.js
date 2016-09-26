@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var User = require('../models/user');
 var Ingredient = require('../models/ingredient')
 var jwt = require('jsonwebtoken');
+var http = require('http');
 var config = require('../../config');
 var secret = config.secret;
 
@@ -87,6 +88,24 @@ module.exports = function(app, express) {
 		res.send(req.decoded);
 	});
 
+	apiRouter.get('/getDrinkByIngredient/:ingName', function(req, res) {
+		data = http.get({
+			host: 'addb.absolutdrinks.com',
+			path: '/drinks/with/' + req.params.ingName + '/?apiKey=3333501cb1af4603beccb822dc764f03'
+		},function(resp) {
+			var body = '';
+			resp.on('data', function(d) {
+				body += d;
+			});
+			resp.on('end', function() {
+				console.log(body);
+				res.json({
+					success: true,
+					data: body
+				});
+			});
+		});
+	});
 
 	apiRouter.get('/ingredient/:ingName', function(req, res) {
 		ingredientName = req.params.ingName
@@ -134,32 +153,6 @@ module.exports = function(app, express) {
 			});
 		}
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	return apiRouter;
 };

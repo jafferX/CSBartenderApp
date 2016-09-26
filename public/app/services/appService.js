@@ -7,5 +7,12 @@ angular.module('appService', [])
 			return $http.get('/api/ingredient/' + name);
 		};
 
+<<<<<<< c1fdaebf95df852c173f8b5071a44a0155498d13
+=======
+		appFactory.getDrinkBy = function(ing) {
+			return $http.get('/api/getDrinkByIngredient/' + ing);
+		};
+
+>>>>>>> Fixed CORS
 		return appFactory;
 	});

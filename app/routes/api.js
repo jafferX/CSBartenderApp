@@ -91,7 +91,7 @@ module.exports = function(app, express) {
 	apiRouter.get('/getDrinkByIngredient/:ingName', function(req, res) {
 		data = http.get({
 			host: 'addb.absolutdrinks.com',
-			path: '/drinks/with/' + req.params.ingName + '/?apiKey=3333501cb1af4603beccb822dc764f03'
+			path: '/drinks/with/' + req.params.ingName + '/?apiKey=' + config.api_key;
 		},function(resp) {
 			var body = '';
 			resp.on('data', function(d) {

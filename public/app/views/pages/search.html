@@ -10,5 +10,21 @@
 	img {
 		max-width: 300px;
 	}
+    .row {
+        margin-top: 50px;
+    }
 </style>
 <input ng-change="search.searchIng()" ng-model="search.searchString" type="text" class="form-control" placeholder="  Search by ingredient...">
+<div class="row col-md-6 col-md-offset-3">
+    <div class="jumbotron">
+        <h4>Results</h4>
+        <button ng-if="!search.processing" ng-repeat="ing in search.ingredients" ng-click="search.searchByIng(ing.name, false)" class="btn btn-primary">{{ ing.name }}</button>
+    </div>
+    <div class="jumbotron">
+        <h4>Drinks</h4>
+        <div ng-repeat="dr in search.drinks">
+            <button class="btn btn-primary">{{ dr.name }}</button>
+            <br>
+        </div>
+    </div>
+</div>

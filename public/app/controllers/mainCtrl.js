@@ -26,7 +26,7 @@ angular.module('mainCtrl', [])
 							.success(function(data) {
 								vm.processing = false;
 								if(data.success)
-									$location.path('/app');
+									$location.path('/search');
 								else
 									vm.error = data.message;
 							});
@@ -39,7 +39,7 @@ angular.module('mainCtrl', [])
 		};
 
 		vm.clickRedirect = function() {
-			$location.path('/app');
+			$location.path('/search');
 		}
 
 		vm.doLogout = function() {
@@ -57,7 +57,7 @@ angular.module('mainCtrl', [])
 				.success(function(data) {
 					vm.processing = false;
 					if(data.success)
-						$location.path('/app');
+						$location.path('/search');
 					else
 						vm.error = data.message;
 				});

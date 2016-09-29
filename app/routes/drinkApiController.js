@@ -1,5 +1,5 @@
 var config  = require('../../config');
-var request = require('request');
+var request = require('request'); //http request package
 
 //Get requests for drink
 function getRequest(href, done) {
@@ -7,12 +7,12 @@ function getRequest(href, done) {
 		url: href,
 		method: 'GET'
 	}
-	request(options, function(error,message, object){
+	request(options, function(error, message, object){
 		if(error) {
 			done(null,error);
 		}
 		else {
-			var json = json.parse(object);
+			var json = JSON.parse(object);
 			done(json);
 		}
 	});
@@ -23,7 +23,16 @@ function getDrinksWith(ing_name, done) {
 	getRequest(href, done);
 }
 
+//quick search for drinks. works with search query. pull ingredient ideas from this
+function getDrinkQuickSearch(ing_name, done) {
+	var href = "http://addb.absolutdrinks.com/quickSearch/drinks/" + ing_name + "/?apikey=" + config.api_key;
+	getRequest(href, done);
+}
+
+
+
 module.exports = {
 	getRequest:getRequest,
-	getDrinksWith:getDrinksWith
+	getDrinksWith:getDrinksWith,
+	getDrinkQuickSearch:getDrinkQuickSearch
 }

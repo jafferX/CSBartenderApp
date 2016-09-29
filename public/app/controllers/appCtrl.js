@@ -32,9 +32,10 @@ angular.module('appCtrl', [])
 					}
 					
 				});
-				App.getByDrink(data.data.ingredients[0].name).then(function(data) {
-						console.log(data);
-					});
+				App.getDrinkSearch(data.data.ingredients[0].name).then(function(data) {
+					console.log(data);
+				});
+
 		}
 
 	});

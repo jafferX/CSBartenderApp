@@ -6,6 +6,7 @@ var jwt = require('jsonwebtoken');
 var http = require('http');
 var config = require('../../config');
 var secret = config.secret;
+var drinkApi = require ('../../app/routes/drinkApiController');
 
 module.exports = function(app, express) {
 	var apiRouter = express.Router();
@@ -104,6 +105,17 @@ module.exports = function(app, express) {
 					data: body
 				});
 			});
+		});
+});
+	//use this for testing and parsing of ingredients
+	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) {
+		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
+				console.log(data);
+				res.json({
+					success:true,
+					data:data
+				});
+			
 		});
 	});
 

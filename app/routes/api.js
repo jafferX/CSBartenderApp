@@ -1,3 +1,5 @@
+//Test comment to verify working commits/push
+
 // Import our requirements.
 var bodyParser = require('body-parser'); 
 var User = require('../models/user');

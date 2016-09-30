@@ -1,5 +1,5 @@
 // Import our requirements.
-var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser');
 var User = require('../models/user');
 var Ingredient = require('../models/ingredient')
 var jwt = require('jsonwebtoken');
@@ -119,9 +119,9 @@ module.exports = function(app, express) {
 			ing.name = req.body.ingredientName;
 			ing.save(function(err) {
 				if (err) {
-					if (err.code == 11000) 
+					if (err.code == 11000)
 						return res.json({ success: false, message: 'A ingredient with that username already exists. '});
-					else 
+					else
 						return res.json({ success: false, message: err});
 				} else {
 					return res.json({ success: true, message: 'Ingredient created!'});
@@ -134,6 +134,7 @@ module.exports = function(app, express) {
 			});
 		}
 	});
+//Pablo was here
 
 
 

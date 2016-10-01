@@ -1,3 +1,9 @@
+#data/mongodb
+data
+
+.idea
+
+
 # Logs
 logs
 *.log

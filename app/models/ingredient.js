@@ -7,7 +7,15 @@ var IngSchema = new Schema({
 		required: true,
 		index: {
 			unique: true
-		}
+		},
+	IngABV: {
+		type: double,
+		required: true
+	},
+	IngIDField: {
+		type: String,
+		required: true
+	}
 	}
 });
 

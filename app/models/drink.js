@@ -14,23 +14,23 @@ var DrinkSchema = new Schema({
 		required: true,
 		index: {
 			unique: true
-			},
-	    DrinkABV: {
-		type: double,
-		required: true
-		},
-		rating : {
-			type: String,
-			required: true
-		},
-		drinkIDField : {
-			type : String,
-			required : true
-		},
-		drinkDiscription : {
-			type : String,
-			required : true
 		}
+	},
+	DrinkABV: {
+	type: double,
+	required: true
+	},
+	rating : {
+		type: String,
+		required: true
+	},
+	drinkIDField : {
+		type : String,
+		required : true
+	},
+	drinkDiscription : {
+		type : String,
+		required : true
 	}
 	
 });

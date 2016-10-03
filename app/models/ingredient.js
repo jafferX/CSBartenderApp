@@ -7,7 +7,8 @@ var IngSchema = new Schema({
 		required: true,
 		index: {
 			unique: true
-		},
+		}
+	},
 	IngABV: {
 		type: double,
 		required: true
@@ -16,7 +17,7 @@ var IngSchema = new Schema({
 		type: String,
 		required: true
 	}
-	}
+	
 });
 
 module.exports = mongoose.model('Ingredient', IngSchema);

@@ -3,8 +3,10 @@ var bodyParser = require('body-parser');
 var User = require('../models/user');
 var Ingredient = require('../models/ingredient')
 var jwt = require('jsonwebtoken');
+var http = require('http');
 var config = require('../../config');
 var secret = config.secret;
+var drinkApi = require ('../../app/routes/drinkApiController');
 
 module.exports = function(app, express) {
 	var apiRouter = express.Router();
@@ -87,6 +89,44 @@ module.exports = function(app, express) {
 		res.send(req.decoded);
 	});
 
+	apiRouter.get('/getDrinkByIngredient/:ingName', function(req, res) {
+		data = http.get({
+			host: 'addb.absolutdrinks.com',
+			path: '/drinks/with/' + req.params.ingName + '/?apiKey=' + config.api_key
+		},function(resp) {
+			var body = '';
+			resp.on('data', function(d) {
+				body += d;
+			});
+			resp.on('end', function() {
+				try {
+					var b = JSON.parse(body);
+					res.json({
+						success: true,
+						data: b
+					});
+				} catch(e) {
+					res.json({
+						success: false,
+						message: 'Invalid value returned from drinks api.'
+					});
+				}
+			});
+		});
+});
+
+	//use this for testing and parsing of ingredients
+	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) {
+		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
+				console.log(data);
+				drinkApi.getIngredientsForDrink(data);//added by carlos to test function
+				res.json({
+					success:true,
+					data:data
+				});
+			
+		});
+	});
 
 	apiRouter.get('/ingredient/:ingName', function(req, res) {
 		ingredientName = req.params.ingName
@@ -120,7 +160,7 @@ module.exports = function(app, express) {
 			ing.save(function(err) {
 				if (err) {
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'A ingredient with that username already exists. '});
+						return res.json({ success: false, message: 'A ingredient with that name already exists. '});
 					else 
 						return res.json({ success: false, message: err});
 				} else {
@@ -134,32 +174,6 @@ module.exports = function(app, express) {
 			});
 		}
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	return apiRouter;
 };

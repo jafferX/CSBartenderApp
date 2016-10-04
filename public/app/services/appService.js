@@ -13,8 +13,12 @@ angular.module('appService', [])
 
 		//search query
 		appFactory.getDrinkSearch = function(ing) {
-			return $http.get('/getDrinkBySearch/' + ing);
+			return $http.get('/api/getDrinkBySearch/' + ing);
 		}
+
+		appFactory.addIngredient = function(name) {
+			return $http.post('/api/addIngredient', { ingredientName: name });
+}
 
 
 		return appFactory;

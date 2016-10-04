@@ -23,19 +23,52 @@ angular.module('appCtrl', [])
 	})
 	.controller('searchController', function(App) {
 		var vm = this;
+		vm.ingredients = [];
+		vm.drinks = [];
+		vm.processing = false;
 
-		vm.searchIng = function() {
-			App.getIngredient(vm.searchString)
+		vm.searchByIng = function(ingName, addIfReturnsDrink) {
+			vm.processing = true;
+			App.getDrinkSearch(ingName)
 				.then(function(data) {
-					if(data.data.ingredients) {
-						console.log(data.data.ingredients[0]);
-					}
-					
-				});
-				App.getDrinkSearch(data.data.ingredients[0].name).then(function(data) {
+					vm.processing = false;
 					console.log(data);
-				});
+					if(data.data.success) {
+						if(data.data.data.result.length != 0) {
+							vm.drinks = data.data.data.result;
+							if (addIfReturnsDrink) {
+								//	Add ingredient to our database
+								App.addIngredient(ingName)
+									.then(function (data) {
+										console.log(data);
+									});
+							}
+						}
+					} else {
 
+					}
+				});
+		}
+		
+		vm.searchIng = function() {
+			vm.processing = true;
+			vm.ingredients = [];
+			if(vm.searchString != "") {
+				App.getIngredient(vm.searchString)
+					.then(function (data) {
+						if (data.data.success) {
+							if (data.data.ingredients) {
+								for (i in data.data.ingredients) {
+									vm.ingredients = data.data.ingredients;
+								}
+								vm.processing = false;
+							}
+						} else {
+							vm.searchByIng(vm.searchString, true);
+							vm.processing = false;
+						}
+					});
+			}
 		}
 
-	});
+});

@@ -99,14 +99,22 @@ module.exports = function(app, express) {
 				body += d;
 			});
 			resp.on('end', function() {
-				console.log(body);
-				res.json({
-					success: true,
-					data: body
-				});
+				try {
+					var b = JSON.parse(body);
+					res.json({
+						success: true,
+						data: b
+					});
+				} catch(e) {
+					res.json({
+						success: false,
+						message: 'Invalid value returned from drinks api.'
+					});
+				}
 			});
 		});
 });
+
 	//use this for testing and parsing of ingredients
 	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) {
 		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
@@ -152,7 +160,7 @@ module.exports = function(app, express) {
 			ing.save(function(err) {
 				if (err) {
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'A ingredient with that username already exists. '});
+						return res.json({ success: false, message: 'A ingredient with that name already exists. '});
 					else 
 						return res.json({ success: false, message: err});
 				} else {

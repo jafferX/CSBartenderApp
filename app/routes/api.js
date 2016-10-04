@@ -111,10 +111,11 @@ module.exports = function(app, express) {
 	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) {
 		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
 				console.log(data);
-				res.json({
-					success:true,
-					data:data
-				});
+				drinkApi.getIngredientsForDrink(data);//added by carlos to test function
++				res.json({
++					success:true,
++					data:data
++				});
 			
 		});
 	});

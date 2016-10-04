@@ -29,10 +29,46 @@ function getDrinkQuickSearch(ing_name, done) {
 	getRequest(href, done);
 }
 
+function getIngredientsForDrink(data)
+{
+	var drinkInfo;
+	var drinksArray;
+	drinksArray = '[';
+	for(x=0; x<data.result.length; x++) 
+	{
+		drinkInfo = 'Drink: ' + x + ' [';
+		var Ids = 'IDs: [';
+		var Names = 'Names: [';
+
+	
+		for (i=0; i < data.result[x].ingredients.length; i++)//for loop to fill ingredientsID array
+		{
+			Ids += data.result[x].ingredients[i].id + ', ';
+		}
+		Ids += ']';
+	
+		for (i=0; i < data.result[x].ingredients.length; i++)//for loop to fill ingredientsID array
+		{
+			Names += data.result[x].ingredients[i].textPlain + ', ';
+		}
+		Names += ']';
+	
+	
+		drinkInfo += [data.result[x].id, data.result[0].name,Ids,Names];
+		drinksArray += [drinkInfo];
+		
+	}
+	console.log(drinksArray);
+	
+}
+
+
+
 
 
 module.exports = {
 	getRequest:getRequest,
 	getDrinksWith:getDrinksWith,
-	getDrinkQuickSearch:getDrinkQuickSearch
+	getDrinkQuickSearch:getDrinkQuickSearch,
+	getIngredientsForDrink:getIngredientsForDrink
 }

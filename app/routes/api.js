@@ -112,10 +112,10 @@ module.exports = function(app, express) {
 		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
 				console.log(data);
 				drinkApi.getIngredientsForDrink(data);//added by carlos to test function
-+				res.json({
-+					success:true,
-+					data:data
-+				});
+				res.json({
+					success:true,
+					data:data
+				});
 			
 		});
 	});

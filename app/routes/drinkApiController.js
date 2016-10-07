@@ -31,6 +31,10 @@ function getDrinkQuickSearch(ing_name, done) {
 
 function getIngredientsForDrink(data)
 {
+	if (data.hasOwnProperty("error"))
+	{
+		return;
+	}
 	var drinkInfo;
 	var drinksArray;
 	drinksArray = '[';

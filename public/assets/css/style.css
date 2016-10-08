@@ -16,6 +16,10 @@ body {
 	background-color : #f1f1f1 !important;
 }
 
+.btn {
+	border: none !important;
+}
+
 main {
 	padding-top:30px;	
 }

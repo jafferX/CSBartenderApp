@@ -5,12 +5,18 @@
 	.jumbotron h2 {
 		color: #8C4B30;
 	}
-	img {
+	/*img {
 		max-width: 300px;
-	}
+	}*/
     .row {
         margin-top: 50px;
     }
+
+    .card {
+        text-align: center;
+        background-color: white;
+    }
+
 </style>
 <input ng-change="search.searchIng()" ng-model="search.searchString" type="text" class="form-control" placeholder="  Search by ingredient...">
 <div class="row col-md-6 col-md-offset-3">
@@ -20,6 +26,15 @@
     </div>
 
     
+    <div class="card" ng-repeat="drink in search.drinks">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="assets/img/genericDrink.jpg">
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{ drink.name }}</span>
+          <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+        </div>
+    </div>
 
-    
+
 </div>

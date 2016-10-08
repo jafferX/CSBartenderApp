@@ -8,6 +8,8 @@ var config = require('../../config');
 var secret = config.secret;
 var drinkApi = require ('../../app/routes/drinkApiController');
 
+// z can you see this?
+
 module.exports = function(app, express) {
 	var apiRouter = express.Router();
 

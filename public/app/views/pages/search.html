@@ -5,9 +5,9 @@
 	.jumbotron h2 {
 		color: #8C4B30;
 	}
-	/*img {
-		max-width: 300px;
-	}*/
+	img {
+		width: 100%;
+	}
     .row {
         margin-top: 50px;
     }
@@ -15,6 +15,14 @@
     .card {
         text-align: center;
         background-color: white;
+    }
+
+    .cardContainer {
+        margin-bottom: 30px;
+    }
+
+    .arrowContainer {
+        margin-top: 20px;
     }
 
 </style>
@@ -25,14 +33,15 @@
         <button ng-if="!search.processing" ng-repeat="ing in search.ingredients" ng-click="search.searchByIng(ing.name, false)" class="btn btn-primary">{{ ing.name }}</button>
     </div>
 
-    
-    <div class="card" ng-repeat="drink in search.drinks">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="assets/img/genericDrink.jpg">
+    <div class="jumbotron" ng-repeat="drink in search.drinks">
+        <span class="card-title"><h3>{{ drink.name }}</h3></span>
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="assets/img/genericDrink.jpg">
+            </div>
         </div>
-        <div class="card-content">
-          <span class="card-title">{{ drink.name }}</span>
-          <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+        <div class="arrowContainer">
+            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
         </div>
     </div>
 

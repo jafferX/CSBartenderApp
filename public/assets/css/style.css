@@ -4,7 +4,7 @@ body {
 
 .jumbotron {
 	text-align: center;
-	opacity: 0.95;
+	opacity: 0.9;
 	/*color: #8C4B30 !important;*/
 }
 
@@ -21,11 +21,11 @@ body {
 }
 
 main {
-	padding-top:30px;	
+	padding-top:30px;
 }
 
 body {
-	background-image: url('http://us.thebar.com/img/homepage/carousel/2015_september_updates/world-class-bg.jpg')
+	background-image: url('/assets/img/blackboard.jpg')
 }
 
 .btn-primary {
@@ -69,6 +69,6 @@ header .navbar {
 }
 
 @-moz-keyframes spin {
-	from 	{ -moz-transform:rotate(0deg); }	
+	from 	{ -moz-transform:rotate(0deg); }
 	to 	{ -moz-transform:rotate(360deg); }
 }

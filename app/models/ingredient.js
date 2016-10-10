@@ -8,9 +8,7 @@ var IngSchema = new Schema({
 		index: {
 			unique: true
 		}
-
 	}
-
 });
 
 module.exports = mongoose.model('Ingredient', IngSchema);

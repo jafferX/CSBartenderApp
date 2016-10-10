@@ -1,5 +1,15 @@
 // We will put app logic here.
 angular.module('appCtrl', [])
+	.directive('onError', function() {
+	  return {
+	    restrict:'A',
+	    link: function(scope, element, attr) {
+	      element.on('error', function() {
+	        element.attr('src', attr.onError);
+	      })
+	    }
+	  }
+	})
 	.controller('appController', function() {
 		var vm = this;
 
@@ -71,6 +81,11 @@ angular.module('appCtrl', [])
 			return occString;
 		}
 
+		vm.replaceImage = function(drink) {
+			console.log(drink);
+			drink['image'] = 'assets/img/genericDrink.png';
+		}
+
 		vm.queryDrinks = function(ss) {
 			vm.processing = true;
 			vm.ingredients = [];
@@ -85,6 +100,7 @@ angular.module('appCtrl', [])
 								for(drink in vm.drinks) {
 									vm.drinks[drink]['mainToggle'] = 'show';
 									vm.drinks[drink]['aboutToggle'] = 'hide';
+									vm.drinks[drink]['image'] = 'https://assets.absolutdrinks.com/drinks/transparent-background-black/soft-shadow/floor-reflection/'+ vm.drinks[drink]['id'] +'.png';
 									vm.drinks[drink]['plainIngredients'] = vm.plainIngredients(vm.drinks[drink]);
 									vm.drinks[drink]['plainOccasions'] = vm.plainOccasions(vm.drinks[drink]);
 								}

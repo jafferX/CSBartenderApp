@@ -71,7 +71,7 @@
             <span class="card-title"><h3>{{ drink.name }}</h3></span>
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="assets/img/genericDrink.png">
+                    <img src="{{ drink.image }}" on-error="assets/img/genericDrink.png" />
                 </div>
             </div>
         </div>

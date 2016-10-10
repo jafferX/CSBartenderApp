@@ -66,8 +66,7 @@ function getIngredientsForDrink(data)
 		drinksArray += [drinkInfo];
 		
 	}
-	console.log(drinksArray);
-	
+	// console.log(drinksArray);
 }
 
 

@@ -30,7 +30,47 @@ angular.module('appCtrl', [])
 		vm.searchByIng = function(ingName, addIfReturnsDrink) {
 			vm.processing = true;
 		}
+
+		vm.toggleInfo = function(drink) {
+			if(drink['aboutToggle'] == 'hide') {
+				drink['aboutToggle'] = 'show';
+				drink['mainToggle'] = 'hide';
+			} else {
+				drink['mainToggle'] = 'show';
+				drink['aboutToggle'] = 'hide';
+			}
+		}
 		
+		vm.plainIngredients = function(drink) {
+			var ings = drink['ingredients'];
+			var ingString = "";
+			count = 0;
+			lim = ings.length;
+			for(i in ings) {
+				count++;
+				if(count < lim)
+					ingString += ings[i]['textPlain'] + ', ';
+				else
+					ingString += ings[i]['textPlain'];
+			}
+			return ingString;
+		}
+
+		vm.plainOccasions = function(drink) {
+			var occ = drink['occasions'];
+			var occString = "";
+			count = 0;
+			lim = occ.length;
+			for(i in occ) {
+				count++;
+				if(count < lim)
+					occString += occ[i]['text'] + ', ';
+				else
+					occString += occ[i]['text'];
+			}
+			return occString;
+		}
+
 		vm.queryDrinks = function() {
 			vm.processing = true;
 			vm.ingredients = [];
@@ -42,6 +82,12 @@ angular.module('appCtrl', [])
 						if(data.data.success) {
 							if(data.data.data.result.length != 0) {
 								vm.drinks = data.data.data.result;
+								for(drink in vm.drinks) {
+									vm.drinks[drink]['mainToggle'] = 'show';
+									vm.drinks[drink]['aboutToggle'] = 'hide';
+									vm.drinks[drink]['plainIngredients'] = vm.plainIngredients(vm.drinks[drink]);
+									vm.drinks[drink]['plainOccasions'] = vm.plainOccasions(vm.drinks[drink]);
+								}
 							}
 						} else {
 							console.log('Something went wrong getting drinks');

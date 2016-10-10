@@ -13,6 +13,7 @@ angular.module('appService', [])
 
 		//search query
 		appFactory.getDrinkSearch = function(ing) {
+			console.log(ing);
 			return $http.get('/api/getDrinkBySearch/' + ing);
 		}
 

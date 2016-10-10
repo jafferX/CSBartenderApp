@@ -88,6 +88,8 @@ angular.module('appCtrl', [])
 									vm.drinks[drink]['plainIngredients'] = vm.plainIngredients(vm.drinks[drink]);
 									vm.drinks[drink]['plainOccasions'] = vm.plainOccasions(vm.drinks[drink]);
 								}
+							} else {
+								vm.drinks = [];
 							}
 						} else {
 							console.log('Something went wrong getting drinks');

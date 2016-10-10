@@ -48,7 +48,7 @@ module.exports = function(app, express) {
 			});
 		} else {
 			res.json({
-				success: False,
+				success: false,
 				message: 'No username or password provided'
 			});
 		}
@@ -118,7 +118,7 @@ module.exports = function(app, express) {
 	//use this for testing and parsing of ingredients
 	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) {
 		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
-				console.log(data);
+				// console.log(data);
 				drinkApi.getIngredientsForDrink(data);//added by carlos to test function
 				res.json({
 					success:true,

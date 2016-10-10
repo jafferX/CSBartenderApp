@@ -39,20 +39,14 @@ function getIngredientsForDrink(data)
 		drinkInfo = 'Drink: ' + x + ' [';
 		var Ids = 'IDs: [';
 		var Names = 'Names: [';
-
 	
-		for (i=0; i < data.result[x].ingredients.length; i++)//for loop to fill ingredientsID array
+		for (i=0; i < data.result[x].ingredients.length; i++)//for loop to fill ingredientsID array and ingredientNames
 		{
 			Ids += data.result[x].ingredients[i].id + ', ';
-		}
-		Ids += ']';
-	
-		for (i=0; i < data.result[x].ingredients.length; i++)//for loop to fill ingredientsID array
-		{
 			Names += data.result[x].ingredients[i].textPlain + ', ';
 		}
+		Ids += ']';
 		Names += ']';
-	
 	
 		drinkInfo += [data.result[x].id, data.result[0].name,Ids,Names];
 		drinksArray += [drinkInfo];

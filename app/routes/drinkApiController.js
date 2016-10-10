@@ -80,6 +80,7 @@ function getIngredientsForDrink(data)
 
 
 	console.log(drinksArray);
+	return drinksArray;
 
 }
 

@@ -71,14 +71,14 @@ angular.module('appCtrl', [])
 			return occString;
 		}
 
-		vm.queryDrinks = function() {
+		vm.queryDrinks = function(ss) {
 			vm.processing = true;
 			vm.ingredients = [];
 			if(vm.searchString != "") {
 				App.getDrinkSearch(vm.searchString)
 				.then(function(data) {
 					vm.processing = false;
-					if(vm.searchString != "") {
+					if(vm.searchString != "" && vm.searchString == ss) {
 						if(data.data.success) {
 							if(data.data.data.result.length != 0) {
 								vm.drinks = data.data.data.result;

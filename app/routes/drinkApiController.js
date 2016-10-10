@@ -19,13 +19,13 @@ function getRequest(href, done) {
 }
 //Given an ingredient get drinks with ingredient
 function getDrinksWith(ing_name, done) {
-	var href = "http://addb.absolutdrinks.com/drinks/with/" + ing_name + "/?apiKey=" + config.api_key;
+	var href = "http://addb.absolutdrinks.com/drinks/with/" + ing_name + "/?apiKey=" + config.apikey;
 	getRequest(href, done);
 }
 
 //quick search for drinks. works with search query. pull ingredient ideas from this
 function getDrinkQuickSearch(ing_name, done) {
-	var href = "http://addb.absolutdrinks.com/quickSearch/drinks/" + ing_name + "/?apikey=" + config.api_key;
+	var href = "http://addb.absolutdrinks.com/quickSearch/drinks/" + ing_name + "/?apikey=" + config.apikey;
 	getRequest(href, done);
 }
 

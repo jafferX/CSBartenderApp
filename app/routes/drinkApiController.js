@@ -31,10 +31,21 @@ function getDrinkQuickSearch(ing_name, done) {
 
 function getIngredientsForDrink(data)
 {
+	var URLs = [];
+
+
 	if (data.hasOwnProperty("error"))
 	{
 		return;
 	}
+
+	if (data.result.length == 0) {
+		drinksArray += ']';
+		return URLs;
+	}
+
+
+
 	var drinkInfo;
 	var drinksArray;
 	drinksArray = '[';
@@ -42,32 +53,34 @@ function getIngredientsForDrink(data)
 		drinksArray += ']';
 		return drinksArray;
 	}
-	for(x=0; x<data.result.length; x++) 
+	for(x=0; x<data.result.length; x++)
 	{
 		drinkInfo = 'Drink: ' + x + ' [';
 		var Ids = 'IDs: [';
 		var Names = 'Names: [';
+		var URLs = 'URL: [';
+		var placeholder = '';
 
-	
+		URLs += 'http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/' + data.result[x].id + '.png]'
+
+
+
 		for (i=0; i < data.result[x].ingredients.length; i++)//for loop to fill ingredientsID array
 		{
 			Ids += data.result[x].ingredients[i].id + ', ';
-		}
-		Ids += ']';
-	
-		for (i=0; i < data.result[x].ingredients.length; i++)//for loop to fill ingredientsID array
-		{
 			Names += data.result[x].ingredients[i].textPlain + ', ';
 		}
+		Ids += ']';
 		Names += ']';
-	
-	
-		drinkInfo += [data.result[x].id, data.result[0].name,Ids,Names];
+
+		drinkInfo += [data.result[x].id, data.result[0].name,Ids,Names,URLs];
 		drinksArray += [drinkInfo];
-		
+
 	}
+
+
 	console.log(drinksArray);
-	
+
 }
 
 

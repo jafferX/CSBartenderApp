@@ -64,7 +64,7 @@
         }
     }
 </style>
-<input ng-change="search.queryDrinks()" ng-model="search.searchString" type="text" class="form-control" placeholder="  Search by ingredient...">
+<input ng-change="search.queryDrinks()" ng-model="search.searchString" type="text" class="form-control" placeholder="  Search by name...">
 <div class="row col-md-6 col-md-offset-3">
     <div class="jumbotron" ng-repeat="drink in search.drinks" ng-click="search.toggleInfo(drink)">
         <div class="{{ drink.mainToggle }}">

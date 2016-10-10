@@ -48,7 +48,7 @@ module.exports = function(app, express) {
 			});
 		} else {
 			res.json({
-				success: False,
+				success: false,
 				message: 'No username or password provided'
 			});
 		}

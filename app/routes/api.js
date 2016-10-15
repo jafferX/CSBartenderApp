@@ -1,7 +1,7 @@
 // Import our requirements.
 var bodyParser = require('body-parser'); 
 var User = require('../models/user');
-var Ingredient = require('../models/ingredient')
+var Ingredient = require('../models/ingredient');
 var jwt = require('jsonwebtoken');
 var http = require('http');
 var config = require('../../config');
@@ -119,7 +119,7 @@ module.exports = function(app, express) {
 	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) {
 		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
 				// console.log(data);
-				drinkApi.getIngredientsForDrink(data);//added by carlos to test function
+				drinkApi.addIngredient(data);//added by carlos to test function
 				res.json({
 					success:true,
 					data:data
@@ -157,6 +157,7 @@ module.exports = function(app, express) {
 		if(req.body.ingredientName) {
 			var ing = new Ingredient();
 			ing.name = req.body.ingredientName;
+			//ing.ingredient_id = drinkApi.getDrinkQuickSearch(req.body.ingredientName)
 			ing.save(function(err) {
 				if (err) {
 					if (err.code == 11000) 

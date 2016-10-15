@@ -8,6 +8,7 @@ var IngSchema = new Schema({
 		index: {
 			unique: true
 		}
+	
 
 	}
 

@@ -1,7 +1,7 @@
 // Import our requirements.
 var bodyParser = require('body-parser'); 
 var User = require('../models/user');
-var Ingredient = require('../models/ingredient')
+var Ingredient = require('../models/ingredient');
 var jwt = require('jsonwebtoken');
 var http = require('http');
 var config = require('../../config');
@@ -48,7 +48,7 @@ module.exports = function(app, express) {
 			});
 		} else {
 			res.json({
-				success: False,
+				success: false,
 				message: 'No username or password provided'
 			});
 		}
@@ -92,31 +92,35 @@ module.exports = function(app, express) {
 	apiRouter.get('/getDrinkByIngredient/:ingName', function(req, res) {
 		data = http.get({
 			host: 'addb.absolutdrinks.com',
-			path: '/drinks/with/' + req.params.ingName + '/?apiKey=' + config.api_key
+			path: '/drinks/with/' + req.params.ingName + '/?apiKey=' + config.apikey
 		},function(resp) {
 			var body = '';
 			resp.on('data', function(d) {
 				body += d;
 			});
 			resp.on('end', function() {
-				console.log(body);
-				res.json({
-					success: true,
-					data: body
-				});
+				try {
+					var b = JSON.parse(body);
+					res.json({
+						success: true,
+						data: b
+					});
+				} catch(e) {
+					res.json({
+						success: false,
+						message: 'Invalid value returned from drinks api.'
+					});
+				}
 			});
 		});
 });
+
 	//use this for testing and parsing of ingredients
-	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) 
-	{
-		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) 
-		{
-				//console.log(data);
-				drinkApi.getIngredientsForDrink(data);//added by carlos to test function
-				
-				res.json(
-				{
+	apiRouter.get('/getDrinkBySearch/:ingName', function (req, res) {
+		drinkApi.getDrinkQuickSearch(req.params.ingName, function(data, error) {
+				// console.log(data);
+				drinkApi.addIngredient(data);//added by carlos to test function
+				res.json({
 					success:true,
 					data:data
 				});
@@ -153,10 +157,11 @@ module.exports = function(app, express) {
 		if(req.body.ingredientName) {
 			var ing = new Ingredient();
 			ing.name = req.body.ingredientName;
+			//ing.ingredient_id = drinkApi.getDrinkQuickSearch(req.body.ingredientName)
 			ing.save(function(err) {
 				if (err) {
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'A ingredient with that username already exists. '});
+						return res.json({ success: false, message: 'A ingredient with that name already exists. '});
 					else 
 						return res.json({ success: false, message: err});
 				} else {

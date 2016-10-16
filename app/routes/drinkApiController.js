@@ -113,14 +113,16 @@ function addIngredient(data) {
 				else {
 					return res.json({ success: false, message: err});
 				}
+			}
 				else {
 					return res.json({ success: true, message: 'Ingredient created!'});
 				}
-			}
-		});
+			});
+			
+		}
 	}
 	
-}
+
 
 
 

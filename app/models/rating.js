@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 // Tells mongodb what values it will store.
 var RatingSchema = new Schema({
 	drinksRating: {
-		type: var,
+		type: var, //add drinks into a drink array 
 		required: true,
 		index: {
 			unique: true

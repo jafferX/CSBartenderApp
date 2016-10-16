@@ -95,31 +95,16 @@ function addIngredient(data) {
 	}
 	for (x = 0; x<data.result.length; x++) {
 		for (i = 0; i<data.result[x].ingredients.length; i++) {
-			var ing = {
-			Name:data.result[x].ingredients[i].id
-			};
+			var ing = data.result[x].ingredients[i].id;	
+			var newIng = new Ingredient();
+			newIng.name = ing;
+			newIng.save();
 			ingredients.push(ing);
 			
 		}
 	}
-	for (x = 0; ingredients.length; x++) {
-		var newIng = new Ingredient();
-		newIng.name = ingredients[x].Name;
-		newIng.save(function(err) {
-			if (err) {
-				if (err.code == 11000) {
-					return res.json({ success: false, message: 'A ingredient with that name already exists. '});
-				}
-				else {
-					return res.json({ success: false, message: err});
-				}
-			}
-				else {
-					return res.json({ success: true, message: 'Ingredient created!'});
-				}
-			});
-			
-		}
+	
+	console.log(ingredients);
 	}
 	
 

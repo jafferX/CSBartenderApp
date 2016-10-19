@@ -41,4 +41,9 @@ UserSchema.methods.comparePassword = function(password) {
 	return bcrypt.compareSync(password, user.password);
 };
 
+
+// XXX Drink Schema
+
+
+
 module.exports = mongoose.model('User', UserSchema);

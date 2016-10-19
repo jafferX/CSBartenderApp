@@ -1,5 +1,5 @@
 // Import our requirements.
-var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser');
 var User = require('../models/user');
 var Ingredient = require('../models/ingredient');
 var jwt = require('jsonwebtoken');
@@ -124,7 +124,7 @@ module.exports = function(app, express) {
 					success:true,
 					data:data
 				});
-			
+
 		});
 	});
 
@@ -160,9 +160,9 @@ module.exports = function(app, express) {
 			//ing.ingredient_id = drinkApi.getDrinkQuickSearch(req.body.ingredientName)
 			ing.save(function(err) {
 				if (err) {
-					if (err.code == 11000) 
+					if (err.code == 11000)
 						return res.json({ success: false, message: 'A ingredient with that name already exists. '});
-					else 
+					else
 						return res.json({ success: false, message: err});
 				} else {
 					return res.json({ success: true, message: 'Ingredient created!'});
@@ -175,6 +175,36 @@ module.exports = function(app, express) {
 			});
 		}
 	});
+
+
+
+	//Make a route that adds drinks to our database based on cards
+	// XXX
+
+	apiRouter.post('/addDrink', function(req, res) {
+		if(req.body.drinkName) {
+			var dri = new Drink();
+			dri.name = req.body.drinkName;
+			dri.save(function(err) {
+				if (err) {
+					if (err.code == 11000)
+						return res.json({ success: false, message: 'A ingredient with that name already exists. '});
+					else
+						return res.json({ success: false, message: err});
+				} else {
+					return res.json({ success: true, message: 'Ingredient created!'});
+				}
+			});
+		} else {
+			res.status(403).send({
+				success: false,
+				message: 'Drink name not found.'
+			});
+		}
+	});
+
+
+
 
 	return apiRouter;
 };

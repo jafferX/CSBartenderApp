@@ -12,6 +12,11 @@ var RatingSchema = new Schema({
 		index: {
 			unique: true
 		}
+		
+	drinkNames : {
+		type: var, //add drink names into this one
+		required: true
+	},
 	
 
 	}

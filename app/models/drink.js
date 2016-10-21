@@ -17,11 +17,6 @@ var DrinkSchema = new Schema({
 			unique: true
 		}
 	},
-	//not sure to keep this from Tyler's code -- Carlos
-	DrinkABV: {
-	type: double,
-	required: true
-	},
 	
 	//the cards list out occasions/description/ingredients
 	drinkOccasions : {
